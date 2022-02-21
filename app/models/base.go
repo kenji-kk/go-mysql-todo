@@ -44,7 +44,10 @@ func init() {
 		user_id INT,
 		created_at TIMESTAMP)`, tableNameTodo)
 
-	Db.Exec(cmdT)
+		_, err = Db.Exec(cmdT)
+		if err != nil {
+			log.Fatalln(err)
+		}
 
 	cmdS := fmt.Sprintf(`CREATE TABLE IF NOT EXISTS %s(
 		id INT PRIMARY KEY AUTO_INCREMENT,
@@ -53,7 +56,10 @@ func init() {
 		user_id INT,
 		created_at TIMESTAMP)`, tableNameSession)
 
-	Db.Exec(cmdS)
+		_, err = Db.Exec(cmdS)
+		if err != nil {
+			log.Fatalln(err)
+		}
 
 	fmt.Println("データ初期化完了")
 }
