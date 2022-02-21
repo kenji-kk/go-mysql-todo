@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"log"
 	"github.com/google/uuid"
+
+	"todo/config"
 )
 
 var Db *sql.DB
@@ -20,7 +22,7 @@ const (
 
 func init() {
 	// [ユーザ名]:[パスワード]@tcp([ホスト名]:[ポート番号])/[データベース名]?charset=[文字コード]
-	Db, err = sql.Open("mysql","go_test:password@tcp(db:3306)/go_database?charset=utf8mb4")
+	Db, err = sql.Open(config.Config.SQLDriver, config.Config.DbUser + ":" + config.Config.DbPassword + config.Config.DbPort + "/" + config.Config.DbName + "?" + "charset=" + config.Config.DbCharSet )
 	if err != nil {
 		log.Fatalln(err)
 	}
