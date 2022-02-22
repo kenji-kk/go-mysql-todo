@@ -1,1 +1,2 @@
-webapp.log
+src/webapp.log
+docker/.env
