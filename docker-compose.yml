@@ -25,7 +25,13 @@ services:
       - ./db/my.cnf:/etc/mysql/conf.d/my.cnf
     ports:
       - 3306:3306
-
+  nginx:
+    container_name: "nginx"
+    build: ./nginx
+    ports:
+      - "80:80"
+    depends_on:
+      - "go"
 volumes:
   db-data:
     driver: local
